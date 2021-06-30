@@ -1,1 +1,4 @@
 tornado==6.1
+
+
+ pip install -i http://pypi.douban.com/simple/ --trusted-host=pypi.douban.com/simple
