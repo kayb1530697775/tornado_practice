@@ -5,9 +5,8 @@
 
 import aioredis
 import asyncio
-import random
 
-loop = asyncio.get_event_loop()
+from tornado.ioloop import IOLoop
 
 
 async def create_redis():
@@ -27,14 +26,17 @@ async def for_write_redis():
     redis_pool = await get_redis_pool()
 
     i = 0
-    while True:
+    while i <= 10:
         save_res = await redis_pool.setnx(f"name{i}", value=f"kayb{i}")
         print(save_res)
         i += 1
 
+    return i
+
 if __name__ == '__main__':
     # asyncio.get_event_loop().run_until_complete(create_redis_pool())
-    loop.run_until_complete(for_write_redis())
+    # loop.run_until_complete(for_write_redis())
+    pass
 
     # IOLoop.instance().add_callback(create_redis_pool)
     # IOLoop.instance().start()
